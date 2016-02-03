@@ -1,4 +1,5 @@
 <?php
+use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
 
 return [
@@ -10,34 +11,37 @@ return [
     ],
     // This can be used to seed pre- and/or post-routing middleware
     'middleware_pipeline' => [
-        // An array of middleware to register prior to registration of the
-        // routing middleware
-        'pre_routing' => [
-            //[
-            // Required:
-            //    'middleware' => 'Name or array of names of middleware services and/or callables',
-            // Optional:
-            //    'path'  => '/path/to/match',
-            //    'error' => true,
-            //],
-            [
-                'middleware' => [
-                    Helper\ServerUrlMiddleware::class,
-                    Helper\UrlHelperMiddleware::class,
-                ],
+        'always' => [
+            'middleware' => [
+                // Add more middleware here that you want to execute on
+                // every request:
+                // - bootstrapping
+                // - pre-conditions
+                // - modifications to outgoing responses
+                Helper\ServerUrlMiddleware::class,
             ],
+            'priority' => 10000,
+        ],
+        'routing' => [
+            'middleware' => [
+                ApplicationFactory::ROUTING_MIDDLEWARE,
+                Helper\UrlHelperMiddleware::class,
+                // Add more middleware here that needs to introspect the routing
+                // results; this might include:
+                // - route-based authentication
+                // - route-based validation
+                // - etc.
+                ApplicationFactory::DISPATCH_MIDDLEWARE,
+            ],
+            'priority' => 1,
         ],
 
-        // An array of middleware to register after registration of the
-        // routing middleware
-        'post_routing' => [
-            //[
-            // Required:
-            //    'middleware' => 'Name of middleware service, or a callable',
-            // Optional:
-            //    'path'  => '/path/to/match',
-            //    'error' => true,
-            //],
+        'error' => [
+            'middleware' => [
+                // Add error middleware here.
+            ],
+            'error'    => true,
+            'priority' => -10000,
         ],
     ],
 ];

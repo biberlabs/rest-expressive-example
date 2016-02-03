@@ -8,19 +8,11 @@ return [
         ],
     ],
     'middleware_pipeline' => [
-        'pre_routing' => [
-            [
-                'middleware' => [
-                    Api\Helper\ApiMiddleware::class
-                ],
+        'routing' => [
+            'middleware' => [
+                Api\Helper\ApiMiddleware::class
             ],
         ],
-        'post_routing' => [
-            [
-                'middleware' => [
-                ]
-            ],
-        ]
     ],
     'routes' => [
         [
