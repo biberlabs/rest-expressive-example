@@ -12,6 +12,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 use ZF\ApiProblem\ApiProblem;
 
+/**
+ * @SWG\Info(title="Example API Interface", 
+ *      description="API Description",
+ *      version="0.1")
+ */
 class AbstractResource
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)

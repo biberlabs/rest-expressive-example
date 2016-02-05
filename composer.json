@@ -25,7 +25,8 @@
         "zendframework/zend-servicemanager": "^2.5",
         "ocramius/proxy-manager": "^1.0",
         "zfcampus/zf-api-problem": "~1.0-dev",
-        "zendframework/zend-paginator": "^2.5"
+        "zendframework/zend-paginator": "^2.5",
+        "zircote/swagger-php": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
