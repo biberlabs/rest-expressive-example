@@ -13,6 +13,8 @@ class UserResourceFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        return new UserResource();
+        $config = $container->get('config');
+        $mocker = new \Mocker\Mocker(new \Mocker\Adapter\Mockaroo($config['mocker']['key']));
+        return new UserResource($mocker);
     }
 }

@@ -77,7 +77,7 @@ class AbstractResource
             return new JsonResponse($result);
         }
 
-        return $this->prepareResponse(new ApiProblem(502));
+        return $this->prepareResponse(new ApiProblem(502, ''));
     }
 
     public function create($data = [])

@@ -14,9 +14,16 @@ use ZF\ApiProblem\ApiProblem;
 
 class AddressResource extends AbstractResource
 {
+    protected $mocker = null;
 
-    public function __construct()
+    public function __construct($mocker)
     {
+        $this->mocker = $mocker;
+        try {
+            $this->mocker->scan(__DIR__);
+        } catch (\Exception $e) {
+            throw new \Exception(500, 'Scanner Error');
+        }
     }
 
     /**
@@ -29,7 +36,7 @@ class AddressResource extends AbstractResource
      */
     public function fetch($id)
     {
-        return ['id' => 5];
+        return $this->mocker->mockOne();
     }
 
     /**
@@ -43,9 +50,6 @@ class AddressResource extends AbstractResource
      */
     public function fetchAll($params = [])
     {
-        return [
-            ['id' => 2],
-            ['id' => 3]
-        ];
+        return $this->mocker->mockMore(10);
     }
 }

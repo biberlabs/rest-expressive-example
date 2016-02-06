@@ -7,9 +7,8 @@
  */
 namespace Api\V1\User;
 
-use Mocker\Annotations\Property as PropertyMock;
-
 /**
+ * @Mocker\Annotations\Entity(uri="/user");
  * @SWG\Definition(definition="User")
  */
 class UserEntity
@@ -18,7 +17,7 @@ class UserEntity
      * Name of user
      *
      * @var string
-     * @PropertyMock(name="name", type="First Name");
+     * @Mocker\Annotations\Property(type="First Name");
      * @SWG\Property()
      */
     protected $name;
@@ -27,6 +26,7 @@ class UserEntity
      * Surname of user
      *
      * @var string
+     * @Mocker\Annotations\Property(type="Last Name");
      * @SWG\Property()
      */
     protected $surname;

@@ -14,8 +14,16 @@ use ZF\ApiProblem\ApiProblem;
 
 class UserResource extends AbstractResource
 {
-    public function __construct()
+    protected $mocker = null;
+
+    public function __construct($mocker)
     {
+        $this->mocker = $mocker;
+        try {
+            $this->mocker->scan(__DIR__);
+        } catch (\Exception $e) {
+            throw new \Exception(500, 'Scanner Error');
+        }
     }
 
     /**
@@ -28,7 +36,7 @@ class UserResource extends AbstractResource
      */
     public function fetch($id)
     {
-        return [];
+        return $this->mocker->mockOne();
     }
 
     /**
@@ -42,7 +50,7 @@ class UserResource extends AbstractResource
      */
     public function fetchAll($params = [])
     {
-        return [];
+        return $this->mocker->mockMore(10);
     }
 
     /**

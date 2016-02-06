@@ -13,6 +13,8 @@ class AddressResourceFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        return new AddressResource();
+        $config = $container->get('config');
+        $mocker = new \Mocker\Mocker(new \Mocker\Adapter\Mockaroo($config['mocker']['key']));
+        return new AddressResource($mocker);
     }
 }
