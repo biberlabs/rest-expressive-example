@@ -14,13 +14,8 @@ use ZF\ApiProblem\ApiProblem;
 
 class UserResource extends AbstractResource
 {
-    protected $userQueryService = null;
-    protected $userIndexService = null;
-
-    public function __construct($userQueryService, $userIndexService)
+    public function __construct()
     {
-        $this->userQueryService = $userQueryService;
-        $this->userIndexService = $userIndexService;
     }
 
     /**
@@ -33,13 +28,7 @@ class UserResource extends AbstractResource
      */
     public function fetch($id)
     {
-        try {
-            $data = $this->userQueryService->getById($id);
-
-            return $data;
-        } catch (\Exception $e) {
-            return new ApiProblem($e->getCode(), $e->getMessage());
-        }
+        return [];
     }
 
     /**
@@ -53,13 +42,7 @@ class UserResource extends AbstractResource
      */
     public function fetchAll($params = [])
     {
-        try {
-            $data = $this->userQueryService->search([]);
-
-            return $data;
-        } catch (\Exception $e) {
-            return new ApiProblem($e->getCode(), $e->getMessage());
-        }
+        return [];
     }
 
     /**
@@ -72,12 +55,6 @@ class UserResource extends AbstractResource
      */
     public function create($data = [])
     {
-        try {
-            $this->userIndexService->index($data);
-
-            return (new JsonResponse())->withStatus(201);
-        } catch (\Exception $e) {
-            return new ApiProblem($e->getCode(), $e->getMessage());
-        }
+        return [];
     }
 }

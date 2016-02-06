@@ -37,8 +37,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Search\\": "src/Search/",
-            "Api\\": "src/Api/"
+            "Api\\": "src/Api/",
+            "Mocker\\": "src/Mocker/"
         }
     },
     "autoload-dev": {

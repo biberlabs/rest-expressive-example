@@ -1,18 +1,18 @@
 <?php
 /**
- * User Resource Middleware Factory
+ * Mock Resource Middleware Factory
  *
- * @since     Dec 2015
+ * @since     Feb 2016
  * @author    Haydar KULEKCI  <haydarkulekci@gmail.com>
  */
-namespace Api\V1\User;
+namespace Api\V1\Mock;
 
 use Interop\Container\ContainerInterface;
 
-class UserResourceFactory
+class MockResourceFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        return new UserResource();
+        return new MockResource();
     }
 }
